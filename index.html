@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queque Clicker: Imperio Pastelero</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- Marcador / Estadísticas principales -->
+        <header class="stats-bar">
+            <div class="stat-box">
+                <span class="label">Queques Totales</span>
+                <span id="score" class="value">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="label">Por Segundo (Q/s)</span>
+                <span id="cps" class="value">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="label">Multiplicador</span>
+                <span id="multiplier" class="value">x1.0</span>
+            </div>
+        </header>
+
+        <!-- Área Principal del Juego -->
+        <main class="main-area">
+            <div class="clicker-section" id="clickerArea">
+                <div class="cake-wrapper" id="cakeWrapper">
+                    <svg id="cakeSvg" viewBox="0 0 200 200" class="cake-svg">
+                        <ellipse cx="100" cy="160" rx="85" ry="20" fill="#e0e0e0" stroke="#b0b0b0" stroke-width="4" />
+                        <ellipse cx="100" cy="157" rx="75" ry="15" fill="#ffffff" />
+                        <path d="M 35 110 L 35 150 Q 100 175 165 150 L 165 110 Z" fill="#d4a373" />
+                        <path d="M 35 110 Q 100 130 165 110 L 165 90 Q 100 110 35 90 Z" fill="#faedcd" />
+                        <path d="M 35 90 Q 100 110 165 90 L 165 70 Q 100 50 35 70 Z" fill="#d4a373" />
+                        <ellipse cx="100" cy="65" rx="65" ry="25" fill="#ffb703" />
+                        <path
+                            d="M 35 65 Q 45 80 55 65 Q 65 85 75 65 Q 85 85 95 65 Q 105 85 115 65 Q 125 85 135 65 Q 145 80 165 65 Q 100 40 35 65 Z"
+                            fill="#ffb703" />
+                        <circle cx="100" cy="45" r="12" fill="#e63946" />
+                        <path d="M 100 33 Q 110 20 115 15" stroke="#2a9d8f" stroke-width="3" fill="none"
+                            stroke-linecap="round" />
+                        <ellipse cx="96" cy="41" rx="3" ry="5" fill="#ffffff" opacity="0.6" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Tienda de Mejoras -->
+            <aside class="shop-section">
+                <h2>🍰 Tienda Pastelera</h2>
+
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="switchTab('cakes')">Queques (Q/s)</button>
+                    <button class="tab-btn" onclick="switchTab('clickers')">Mejoras Clic</button>
+                </div>
+
+                <div id="cakesTab" class="tab-content active">
+                    <div id="cakesList" class="items-list"></div>
+                </div>
+
+                <div id="clickersTab" class="tab-content">
+                    <div id="clickersList" class="items-list"></div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Seccion de Minijuegos -->
+        <section class="minigame-section">
+            <h3>🔥 Minijuego: Horno Perfecto</h3>
+            <p>¡Detén la aguja en la zona verde para activar un multiplicador x5!</p>
+            <div class="oven-game-container">
+                <div class="oven-bar">
+                    <div class="target-zone" id="targetZone"></div>
+                    <div class="indicator" id="ovenIndicator"></div>
+                </div>
+                <button id="ovenBtn" class="action-btn">¡Detener Horno!</button>
+            </div>
+            <div id="ovenStatus" class="status-msg"></div>
+        </section>
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

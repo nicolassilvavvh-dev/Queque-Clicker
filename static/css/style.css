@@ -1,0 +1,348 @@
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   user-select: none;
+}
+
+body {
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   background: linear-gradient(135deg, #fff3b0 0%, #e76f51 100%);
+   color: #333;
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 15px;
+}
+
+.game-container {
+   background: rgba(255, 255, 255, 0.92);
+   width: 100%;
+   max-width: 950px;
+   border-radius: 20px;
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+/* Header & Stats */
+.stats-bar {
+   display: flex;
+   justify-content: space-around;
+   background: #264653;
+   color: #fff;
+   padding: 15px;
+   border-radius: 12px;
+   text-align: center;
+}
+
+.stat-box {
+   display: flex;
+   flex-direction: column;
+}
+
+.stat-box .label {
+   font-size: 0.85rem;
+   text-transform: uppercase;
+   color: #e9c46a;
+   letter-spacing: 1px;
+}
+
+.stat-box .value {
+   font-size: 1.6rem;
+   font-weight: bold;
+}
+
+/* Main Area */
+.main-area {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 20px;
+   min-height: 380px;
+}
+
+@media (max-width: 768px) {
+   .main-area {
+      grid-template-columns: 1fr;
+   }
+}
+
+.clicker-section {
+   position: relative;
+   background: radial-gradient(circle, #ffffff 0%, #faedcd 100%);
+   border-radius: 15px;
+   border: 3px solid #e9c46a;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
+   cursor: pointer;
+}
+
+.cake-wrapper {
+   width: 220px;
+   height: 220px;
+   transition: transform 0.08s ease-out;
+}
+
+.cake-wrapper.squish {
+   transform: scale(0.88, 1.12) translateY(5px);
+}
+
+.cake-svg {
+   width: 100%;
+   height: 100%;
+   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
+}
+
+/* EFECTO ONDA EN CLIC */
+.ripple-wave {
+   position: absolute;
+   border-radius: 50%;
+   border: 3px solid #f4a261;
+   background: rgba(244, 162, 97, 0.25);
+   pointer-events: none;
+   transform: translate(-50%, -50%) scale(0);
+   animation: rippleAnim 0.6s ease-out forwards;
+}
+
+@keyframes rippleAnim {
+   0% {
+      width: 0px;
+      height: 0px;
+      opacity: 1;
+   }
+
+   100% {
+      width: 180px;
+      height: 180px;
+      opacity: 0;
+   }
+}
+
+/* TEXTO FLOTANTE */
+.float-text {
+   position: absolute;
+   font-weight: bold;
+   font-size: 1.4rem;
+   color: #e76f51;
+   pointer-events: none;
+   animation: floatUp 0.8s ease-out forwards;
+   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes floatUp {
+   0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateY(0);
+   }
+
+   100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) translateY(-50px);
+   }
+}
+
+/* Tienda */
+.shop-section {
+   background: #f8f9fa;
+   border-radius: 15px;
+   padding: 15px;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid #e0e0e0;
+}
+
+.shop-section h2 {
+   font-size: 1.2rem;
+   margin-bottom: 10px;
+   color: #264653;
+   text-align: center;
+}
+
+.tabs {
+   display: flex;
+   gap: 5px;
+   margin-bottom: 12px;
+}
+
+.tab-btn {
+   flex: 1;
+   padding: 8px;
+   border: none;
+   background: #e0e0e0;
+   border-radius: 8px;
+   font-weight: bold;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.tab-btn.active {
+   background: #e76f51;
+   color: #fff;
+}
+
+.tab-content {
+   display: none;
+   flex: 1;
+   overflow-y: auto;
+   max-height: 280px;
+}
+
+.tab-content.active {
+   display: block;
+}
+
+.items-list {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.shop-item {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   background: #fff;
+   padding: 10px 12px;
+   border-radius: 10px;
+   border: 1px solid #ddd;
+}
+
+.item-info {
+   display: flex;
+   flex-direction: column;
+}
+
+.item-name {
+   font-weight: bold;
+   font-size: 0.95rem;
+   color: #2a9d8f;
+}
+
+.item-effect {
+   font-size: 0.8rem;
+   color: #666;
+}
+
+.buy-btn {
+   background: #2a9d8f;
+   color: white;
+   border: none;
+   padding: 6px 12px;
+   border-radius: 6px;
+   font-weight: bold;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.buy-btn:disabled {
+   background: #ccc;
+   cursor: not-allowed;
+}
+
+/* Minijuego Horno */
+.minigame-section {
+   background: #2b2d42;
+   color: white;
+   padding: 15px;
+   border-radius: 15px;
+   text-align: center;
+}
+
+.minigame-section h3 {
+   color: #e9c46a;
+   margin-bottom: 5px;
+}
+
+.minigame-section p {
+   font-size: 0.85rem;
+   margin-bottom: 12px;
+   color: #d8f3dc;
+}
+
+.oven-game-container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 12px;
+}
+
+.oven-bar {
+   position: relative;
+   width: 100%;
+   max-width: 400px;
+   height: 24px;
+   background: #8d99ae;
+   border-radius: 12px;
+   overflow: hidden;
+}
+
+.target-zone {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 40%;
+   width: 20%;
+   background: #52b788;
+   border-left: 2px solid #fff;
+   border-right: 2px solid #fff;
+}
+
+.indicator {
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   width: 6px;
+   background: #d90429;
+   left: 0%;
+   border-radius: 3px;
+   box-shadow: 0 0 6px #fff;
+}
+
+.action-btn {
+   background: #e76f51;
+   color: white;
+   border: none;
+   padding: 8px 20px;
+   border-radius: 8px;
+   font-weight: bold;
+   cursor: pointer;
+   font-size: 1rem;
+}
+
+.status-msg {
+   margin-top: 8px;
+   font-weight: bold;
+   height: 20px;
+}
+
+/* Queque Dorado Sorpresa */
+.golden-cake {
+   position: fixed;
+   width: 45px;
+   height: 45px;
+   background: gold;
+   border-radius: 50%;
+   box-shadow: 0 0 15px gold;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 1.5rem;
+   cursor: pointer;
+   z-index: 999;
+   animation: pulseGolden 0.6s infinite alternate;
+}
+
+@keyframes pulseGolden {
+   0% {
+      transform: scale(1);
+   }
+
+   100% {
+      transform: scale(1.2);
+   }
+}
